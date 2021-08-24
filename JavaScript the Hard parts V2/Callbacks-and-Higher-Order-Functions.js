@@ -57,7 +57,7 @@ console.log(numberList);
 // Challenge 5
 function mapWith(array, callback) {
   const output = [];
-  array.forEach(i => output.push(callback(i)));
+  forEach(array, i => output.push(callback(i)));
   return output;
 }
 
@@ -71,7 +71,7 @@ const add = function(a, b) { return a + b; }
 function reduce(array, callback, initialValue) {
   let accumulator = initialValue;
   
-  array.forEach(
+  forEach(array, 
     element => {
       accumulator = callback(accumulator, element);
     }
@@ -85,16 +85,27 @@ console.log(reduce(nums, add, 0));
 // Challenge 7
 
 
-function intersection(arrays) {
+function intersection(...arrays) {
 
-  const grouped = [].concat(...arrays)
-  
-  
-  const intersection = reduce(grouped, ,[])
-  
+ 
+ 
+function match(current, next) {
+
+  let filtered = [];
+
+  forEach(current, (elementOfA) => {
+    if(next.includes(elementOfA)) {
+      filtered.push(elementOfA);
+     }
+  })  
+
+   return filtered;
+ }
+ 
+ return reduce(arrays, match , arrays[0])
 }
 
-// console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
+console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
 // should log: [5, 15]
 
 
