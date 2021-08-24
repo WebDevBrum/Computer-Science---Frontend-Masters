@@ -56,19 +56,42 @@ console.log(numberList);
 
 // Challenge 5
 function mapWith(array, callback) {
-
+  const output = [];
+  array.forEach(i => output.push(callback(i)));
+  return output;
 }
 
+console.log(mapWith([1, 2, 3], addTwo));
 
 // Challenge 6
-function reduce(array, callback, initialValue) {
 
+const nums = [4, 2, 3];
+const add = function(a, b) { return a + b; }
+
+function reduce(array, callback, initialValue) {
+  let accumulator = initialValue;
+  
+  array.forEach(
+    element => {
+      accumulator = callback(accumulator, element);
+    }
+  )
+  return accumulator;
 }
+
+console.log(reduce(nums, add, 0));
 
 
 // Challenge 7
+
+
 function intersection(arrays) {
 
+  const grouped = [].concat(...arrays)
+  
+  
+  const intersection = reduce(grouped, ,[])
+  
 }
 
 // console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
