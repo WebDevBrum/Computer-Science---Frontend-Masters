@@ -12,8 +12,8 @@ function addTwo(num) {
 }
 
 // To check if you've completed it, uncomment these console.logs!
-console.log(addTwo(3));
-console.log(addTwo(10));
+// console.log(addTwo(3));
+// console.log(addTwo(10));
 
 // Challenge 2
 function addS(word) {
@@ -21,8 +21,8 @@ function addS(word) {
 }
 
 // uncomment these to check your work
-console.log(addS("pizza"));
-console.log(addS("bagel"));
+// console.log(addS("pizza"));
+// console.log(addS("bagel"));
 
 // Challenge 3
 function map(array, callback) {
@@ -33,7 +33,7 @@ function map(array, callback) {
   return output;
 }
 
-console.log(map([1, 2, 3], addTwo));
+// console.log(map([1, 2, 3], addTwo));
 
 // Challenge 4
 
@@ -46,7 +46,7 @@ function forEach(array, callback) {
 }
 
 forEach(numberList, addTwo);
-console.log(numberList);
+// console.log(numberList);
 
 // see for yourself if your forEach works!
 
@@ -57,7 +57,7 @@ function mapWith(array, callback) {
   return output;
 }
 
-console.log(mapWith([1, 2, 3], addTwo));
+// console.log(mapWith([1, 2, 3], addTwo));
 
 // Challenge 6
 
@@ -75,7 +75,7 @@ function reduce(array, callback, initialValue) {
   return accumulator;
 }
 
-console.log(reduce(nums, add, 0));
+// console.log(reduce(nums, add, 0));
 
 // Challenge 7
 
@@ -95,16 +95,39 @@ function intersection(...arrays) {
   return reduce(arrays, match, arrays[0]);
 }
 
-console.log(
-  intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
-);
+// console.log(
+//   intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
+// );
 // should log: [5, 15]
 
 // Challenge 8
-function union(arrays) {}
+function union(...arrays) {
+  // joins the arrays
+  const newArray = arrays[0].concat(...arrays);
 
-// console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+  // checks if an array includes an element, if not it adds that element to the array and returns the array
+  function comparison(current, element) {
+    if (!current.includes(element)) {
+      current.push(element);
+    }
+    return current;
+  }
+
+  return reduce(newArray, comparison, arrays[0]);
+}
+
+console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
+
+// function reduce(array, callback, initialValue) {
+//   let accumulator = initialValue = [5, 10, 15];
+//
+//   COMPARES EVERY ELEMENT OF CONXAT ARRAY WITH FIRST ARRAY AND PUSHES TO IT IF NOT PRESENT ALREADY
+//   forEach(array, (element) => {
+//     accumulator = comparison(accumulator, element);
+//   });
+//   return accumulator;
+// }
 
 // Challenge 9
 function objOfMatches(array1, array2, callback) {}
