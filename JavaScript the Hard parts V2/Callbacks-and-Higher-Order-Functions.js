@@ -155,22 +155,22 @@ function multiMap(arrVals, arrCallbacks) {
   return composedObject;
 }
 
-console.log(
-  multiMap(
-    ["catfood", "glue", "beer"],
-    [
-      function (str) {
-        return str.toUpperCase();
-      },
-      function (str) {
-        return str[0].toUpperCase() + str.slice(1).toLowerCase();
-      },
-      function (str) {
-        return str + str;
-      },
-    ]
-  )
-);
+// console.log(
+//   multiMap(
+//     ["catfood", "glue", "beer"],
+//     [
+//       function (str) {
+//         return str.toUpperCase();
+//       },
+//       function (str) {
+//         return str[0].toUpperCase() + str.slice(1).toLowerCase();
+//       },
+//       function (str) {
+//         return str + str;
+//       },
+//     ]
+//   )
+// );
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
 // Construct a function objectFilter that accepts an object as the first parameter and a callback function as the second parameter. objectFilter will return a new object. The new object will contain only the properties from the input object such that the property's value is equal to the property's key passed into the callback.
@@ -188,20 +188,37 @@ function objectFilter(obj, callback) {
   return manipulatedObject;
 }
 
-const cities = {
-  London: "LONDON",
-  LA: "Los Angeles",
-  Paris: "PARIS",
-};
-console.log(objectFilter(cities, (city) => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
+// const cities = {
+//   London: "LONDON",
+//   LA: "Los Angeles",
+//   Paris: "PARIS",
+// };
+// console.log(objectFilter(cities, (city) => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // Challenge 12
-function majority(array, callback) {}
+// Create a function majority that accepts an array and a callback. The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true. If the number of true returns is equal to the number of false returns, majority should return false.
+
+function majority(array, callback) {
+  let trueResults = 0;
+  let falseResults = 0;
+
+  forEach(array, (element) => {
+    if (callback(element)) {
+      trueResults += 1;
+    } else {
+      falseResults += 1;
+    }
+  });
+
+  return trueResults > falseResults;
+}
 
 // /*** Uncomment these to check your work! ***/
-// const isOdd = function(num) { return num % 2 === 1; };
-// console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
-// console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
+const isOdd = function (num) {
+  return num % 2 === 1;
+};
+console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
+console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
 
 // Challenge 13
 function prioritize(array, callback) {}
@@ -317,9 +334,9 @@ function myFunc(array, callback) {}
 const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
 
-function isOdd(num) {
-  return num % 2 !== 0;
-}
+// function isOdd(num) {
+//   return num % 2 !== 0;
+// } // CLASHED WITH ANOTHER FUNCTION UNCOMMENT THIS
 
 // /*** Uncomment these to check your work! ***/
 // console.log(myFunc(numbers, isOdd)); // Output should be 1
