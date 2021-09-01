@@ -116,14 +116,14 @@ function union(...arrays) {
   return reduce(newArray, comparison, arrays[0]);
 }
 
-console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+// console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
 
-// function reduce(array, callback, initialValue) {
-//   let accumulator = initialValue = [5, 10, 15];
+// reduce(newArray, comaprison, arrays[0]) {
+//   let accumulator = [5, 10, 15];
 //
 //   COMPARES EVERY ELEMENT OF CONXAT ARRAY WITH FIRST ARRAY AND PUSHES TO IT IF NOT PRESENT ALREADY
-//   forEach(array, (element) => {
+//   forEach(newArray, (element) => {
 //     accumulator = comparison(accumulator, element);
 //   });
 //   return accumulator;
@@ -135,21 +135,65 @@ function objOfMatches(array1, array2, callback) {}
 // console.log(objOfMatches(['hi', 'howdy', 'bye', 'later', 'hello'], ['HI', 'Howdy', 'BYE', 'LATER', 'hello'], function(str) { return str.toUpperCase(); }));
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
 
-// Challenge 10
-function multiMap(arrVals, arrCallbacks) {}
+// Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks. multiMap will return an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
 
-// console.log(multiMap(['catfood', 'glue', 'beer'], [function(str) { return str.toUpperCase(); }, function(str) { return str[0].toUpperCase() + str.slice(1).toLowerCase(); }, function(str) { return str + str; }]));
+// Challenge 10
+function multiMap(arrVals, arrCallbacks) {
+  const composedObject = {};
+
+  forEach(arrVals, (value) => {
+    composedObject[value] = [];
+  });
+
+  forEach(arrCallbacks, (callback) => {
+    const keys = Object.keys(composedObject);
+    forEach(keys, (key) => {
+      composedObject[key].push(callback(key));
+    });
+  });
+
+  return composedObject;
+}
+
+console.log(
+  multiMap(
+    ["catfood", "glue", "beer"],
+    [
+      function (str) {
+        return str.toUpperCase();
+      },
+      function (str) {
+        return str[0].toUpperCase() + str.slice(1).toLowerCase();
+      },
+      function (str) {
+        return str + str;
+      },
+    ]
+  )
+);
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
-// Challenge 11
-function objectFilter(obj, callback) {}
+// Construct a function objectFilter that accepts an object as the first parameter and a callback function as the second parameter. objectFilter will return a new object. The new object will contain only the properties from the input object such that the property's value is equal to the property's key passed into the callback.
 
-// const cities = {
-// London: 'LONDON',
-// LA: 'Los Angeles',
-// Paris: 'PARIS',
-// };
-// console.log(objectFilter(cities, city => city.toUpperCase())) // Should log { London: 'LONDON', Paris: 'PARIS'}
+// Challenge 11
+function objectFilter(obj, callback) {
+  const manipulatedObject = {};
+  const keys = Object.keys(obj);
+
+  forEach(keys, (key) => {
+    manipulatedObject[key] = "";
+    manipulatedObject[key] = callback(obj[key]);
+  });
+
+  return manipulatedObject;
+}
+
+const cities = {
+  London: "LONDON",
+  LA: "Los Angeles",
+  Paris: "PARIS",
+};
+console.log(objectFilter(cities, (city) => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // Challenge 12
 function majority(array, callback) {}
