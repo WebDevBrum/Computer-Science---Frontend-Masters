@@ -217,15 +217,38 @@ function majority(array, callback) {
 const isOdd = function (num) {
   return num % 2 === 1;
 };
-console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
-console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
+// console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
+// console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
 
 // Challenge 13
-function prioritize(array, callback) {}
+// Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize will iterate through the array and perform the callback on each element, and return a new array, where all the elements that yielded a return value of true come first in the array, and the rest of the elements come second.
 
-// /*** Uncomment these to check your work! ***/
-// const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
-// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log:
+function prioritize(array, callback) {
+  const newArray = [];
+
+  forEach(array, (element) => {
+    let counter = 0;
+    if (callback(element)) {
+      newArray.splice(counter, 0, element);
+      counter += 1;
+    } else {
+      newArray.push(element);
+    }
+  });
+
+  return newArray;
+}
+
+/** * Uncomment these to check your work! ** */
+const startsWithS = function (str) {
+  return str[0] === "s" || str[0] === "S";
+};
+console.log(
+  prioritize(
+    ["curb", "rickandmorty", "seinfeld", "sunny", "friends"],
+    startsWithS
+  )
+); // should log:
 ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
 
 // Challenge 14
