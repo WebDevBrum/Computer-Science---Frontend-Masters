@@ -271,20 +271,37 @@ function countBy(array, callback) {
 }
 
 /** * Uncomment these to check your work! ** */
-console.log(
-  countBy([1, 2, 3, 4, 5], function (num) {
-    if (num % 2 === 0) return "even";
-    return "odd";
-  })
-); // should log: { odd: 3, even: 2 }
+// console.log(
+//   countBy([1, 2, 3, 4, 5], function (num) {
+//     if (num % 2 === 0) return "even";
+//     return "odd";
+//   })
+// ); // should log: { odd: 3, even: 2 }
 
 // Challenge 15
-function groupBy(array, callback) {}
+// Create a function groupBy that accepts an array and a callback, and returns an object. groupBy will iterate through the array and perform the callback on each element. Each return value from the callback will be saved as a key on the object. The value associated with each key will be an array consisting of all the elements that resulted in that return value when passed into the callback.
+function groupBy(array, callback) {
+  const newObject = {};
 
-// /*** Uncomment these to check your work! ***/
-// const decimals = [1.3, 2.1, 2.4];
-// const floored = function(num) { return Math.floor(num); };
-// console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
+  forEach(array, (element) => {
+    const elementToAdd = callback(element);
+
+    if (!newObject[elementToAdd]) {
+      newObject[elementToAdd] = [];
+    }
+
+    newObject[elementToAdd].push(element);
+  });
+
+  return newObject;
+}
+
+/** * Uncomment these to check your work! ** */
+const decimals = [1.3, 2.1, 2.4];
+const floored = function (num) {
+  return Math.floor(num);
+};
+console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
 
 // Challenge 16
 function goodKeys(obj, callback) {}
