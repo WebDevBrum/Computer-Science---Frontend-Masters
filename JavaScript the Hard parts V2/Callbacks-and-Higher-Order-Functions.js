@@ -297,19 +297,39 @@ function groupBy(array, callback) {
 }
 
 /** * Uncomment these to check your work! ** */
-const decimals = [1.3, 2.1, 2.4];
-const floored = function (num) {
-  return Math.floor(num);
-};
-console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
+// const decimals = [1.3, 2.1, 2.4];
+// const floored = function (num) {
+//   return Math.floor(num);
+// };
+// console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
 
 // Challenge 16
-function goodKeys(obj, callback) {}
+// Create a function goodKeys that accepts an object and a callback. The callback will return either true or false. goodKeys will iterate through the object and perform the callback on each value. goodKeys will then return an array consisting only the keys whose associated values yielded a true return value from the callback.
 
-// /*** Uncomment these to check your work! ***/
-// const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
-// const startsWithBird = function(str) { return str.slice(0, 4).toLowerCase() === 'bird'; };
-// console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
+function goodKeys(obj, callback) {
+  const newArray = [];
+  const keys = Object.keys(obj);
+
+  forEach(keys, (element) => {
+    if (callback(obj[element])) {
+      newArray.push(element);
+    }
+  });
+  return newArray;
+}
+
+/** * Uncomment these to check your work! ** */
+const sunny = {
+  mac: "priest",
+  dennis: "calculating",
+  charlie: "birdlaw",
+  dee: "bird",
+  frank: "warthog",
+};
+const startsWithBird = function (str) {
+  return str.slice(0, 4).toLowerCase() === "bird";
+};
+console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
 
 // Challenge 17
 function commutative(func1, func2, value) {}
@@ -389,7 +409,6 @@ function multiplyByThree(num) {
 // Challenge 23
 function myFunc(array, callback) {}
 
-const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
 
 // function isOdd(num) {
