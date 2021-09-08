@@ -482,30 +482,44 @@ function addTen(num) {
 }
 
 /** * Uncomment these to check your work! ** */
-console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60 -->
-console.log(combineOperations(0, [divByFive, multiplyFive, addTen])); // Should output 10
+// console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60 -->
+// console.log(combineOperations(0, [divByFive, multiplyFive, addTen])); // Should output 10
 
 // Challenge 23
-function myFunc(array, callback) {}
+// Define a function myFunc that takes an array and a callback. myFunc should pass each element
+// from the array (in order) into the callback. If the callback returns true, myFunc should return the
+// index of the current element. If the callback never returns true, myFunc should return -1;
 
+function myFunc(array, callback) {
+  let returnValue = -1;
+
+  forEach(array, (element) => {
+    if (callback(element) === true) {
+      returnValue = array.indexOf(element);
+    }
+  });
+
+  return returnValue;
+}
+
+const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
 
-// function isOdd(num) {
-//   return num % 2 !== 0;
-// } // CLASHED WITH ANOTHER FUNCTION UNCOMMENT THIS
+// Declared earlier as isOdd
+function isItOdd(num) {
+  return num % 2 !== 0;
+} // CLASHED WITH ANOTHER FUNCTION UNCOMMENT THIS
 
-// /*** Uncomment these to check your work! ***/
-// console.log(myFunc(numbers, isOdd)); // Output should be 1
-// console.log(myFunc(evens, isOdd)); // Output should be -1
+/** * Uncomment these to check your work! ** */
+console.log(myFunc(numbers, isItOdd)); // Output should be 1
+console.log(myFunc(evens, isItOdd)); // Output should be -1
 
 // Challenge 24
-function myForEach(array, callback) {}
+// function myForEach(array, callback) {}
 
-let sum = 0;
-
-function addToSum(num) {
-  sum += num;
-}
+// function addToSum(num) {
+//   sum += num;
+// }
 
 // /*** Uncomment these to check your work! ***/
 // const nums = [1, 2, 3];
