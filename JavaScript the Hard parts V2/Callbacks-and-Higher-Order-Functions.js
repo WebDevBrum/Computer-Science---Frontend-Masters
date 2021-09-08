@@ -7,6 +7,8 @@
 console.log("Hello, world!");
 
 // Challenge 1
+// Create a function addTwo that accepts one input and adds 2 to it.
+
 function addTwo(num) {
   return num + 2;
 }
@@ -16,6 +18,7 @@ function addTwo(num) {
 // console.log(addTwo(10));
 
 // Challenge 2
+// Create a function addS that accepts one input and adds an "s" to it.
 function addS(word) {
   return `${word}s`;
 }
@@ -24,7 +27,12 @@ function addS(word) {
 // console.log(addS("pizza"));
 // console.log(addS("bagel"));
 
-// Challenge 3
+// Challenge 3 ****YOU COULD OF USED THIS MORE OFTEN! *****
+// Create a function called map that takes two inputs:
+// 1.an array of numbers (a list of numbers)
+// 2.a 'callback' function - a function that is applied to each element of the array (inside of the function 'map')
+// Have map return a new array filled with numbers that are the result of using the 'callback' f
+// unction on each element of the input array.
 function map(array, callback) {
   const output = [];
   for (let i = 0; i < array.length; i++) {
@@ -36,7 +44,9 @@ function map(array, callback) {
 // console.log(map([1, 2, 3], addTwo));
 
 // Challenge 4
-
+// Create a function called forEach that takes an array and a callback, and runs the callback on each
+// element of the array.
+// forEach does not return anything.
 const numberList = [1, 2, 3, 4];
 
 function forEach(array, callback) {
@@ -511,17 +521,29 @@ function isItOdd(num) {
 } // CLASHED WITH ANOTHER FUNCTION UNCOMMENT THIS
 
 /** * Uncomment these to check your work! ** */
-console.log(myFunc(numbers, isItOdd)); // Output should be 1
-console.log(myFunc(evens, isItOdd)); // Output should be -1
+// console.log(myFunc(numbers, isItOdd)); // Output should be 1
+// console.log(myFunc(evens, isItOdd)); // Output should be -1
 
 // Challenge 24
-// function myForEach(array, callback) {}
+//
+// Write a function myForEach that accepts an array and a callback function.
+// Your function should pass each element of the array (in order) into the callback function.
+// The behavior of this function should mirror
+// the functionality of the native .forEach() JavaScript array method as closely as possible.
 
-// function addToSum(num) {
-//   sum += num;
-// }
+function myForEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    array[i] = callback(array[i]);
+  }
+}
 
-// /*** Uncomment these to check your work! ***/
-// const nums = [1, 2, 3];
-// myForEach(nums, addToSum);
-// console.log(sum); // Should output 6
+let sum = 0;
+
+function addToSum(num) {
+  sum += num;
+}
+
+/** * Uncomment these to check your work! ** */
+const nums2 = [1, 2, 3];
+myForEach(nums2, addToSum);
+console.log(sum); // Should output 6
