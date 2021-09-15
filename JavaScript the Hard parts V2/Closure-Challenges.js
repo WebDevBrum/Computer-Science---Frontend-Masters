@@ -186,24 +186,38 @@ function saveOutput(func, magicWord) {
 }
 
 /** * Uncomment these to check your work! ** */
-const multiplyBy2 = function (num) {
-  return num * 2;
-};
-const multBy2AndLog = saveOutput(multiplyBy2, "boo");
-console.log(multBy2AndLog(2)); // => should log 4
-console.log(multBy2AndLog(9)); // => should log 18
-console.log(multBy2AndLog("boo")); // => should log { 2: 4, 9: 18 }
+// const multiplyBy2 = function (num) {
+//   return num * 2;
+// };
+// const multBy2AndLog = saveOutput(multiplyBy2, "boo");
+// console.log(multBy2AndLog(2)); // => should log 4
+// console.log(multBy2AndLog(9)); // => should log 18
+// console.log(multBy2AndLog("boo")); // => should log { 2: 4, 9: 18 }
 
 // CHALLENGE 9
-function cycleIterator(array) {}
+// Create a function cycleIterator that accepts an array, and returns a function. The returned function will accept zero arguments. When first invoked, the returned function will return the first element of the array. When invoked a second time, the returned function will return the second element of the array, and so forth. After returning the last element of the array, the next invocation will return the first element of the array again, and continue on with the second after that, and so forth.
+function cycleIterator(array) {
+  let counter = 0;
 
-// /*** Uncomment these to check your work! ***/
-// const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
-// const getDay = cycleIterator(threeDayWeekend);
-// console.log(getDay()); // => should log 'Fri'
-// console.log(getDay()); // => should log 'Sat'
-// console.log(getDay()); // => should log 'Sun'
-// console.log(getDay()); // => should log 'Fri'
+  function returnedFunction() {
+    counter += 1;
+    if (counter <= array.length) {
+      return array[counter - 1];
+    }
+    counter = 1;
+    return array[counter - 1];
+  }
+
+  return returnedFunction;
+}
+
+/** * Uncomment these to check your work! ** */
+const threeDayWeekend = ["Fri", "Sat", "Sun"];
+const getDay = cycleIterator(threeDayWeekend);
+console.log(getDay()); // => should log 'Fri'
+console.log(getDay()); // => should log 'Sat'
+console.log(getDay()); // => should log 'Sun'
+console.log(getDay()); // => should log 'Fri'
 
 // CHALLENGE 10
 function defineFirstArg(func, arg) {}
