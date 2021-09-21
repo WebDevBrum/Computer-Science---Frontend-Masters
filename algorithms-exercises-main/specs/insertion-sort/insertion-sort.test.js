@@ -15,11 +15,27 @@
 
 function insertionSort(nums) {
   // code goes here
+  for (let i = 1; i < nums.length; i++) {
+    // the numberToInsert number we're looking to insert
+    const insertion = nums[i];
+    // the inner counter
+    let j;
+    // loop from the right to the left
+    // keep moving/copying numbers to right while num[j] is greater than number to insert
+    // insert at pount above where this is no longer true (it will replace a duplicate number)
+    for (j = i - 1; nums[j] > insertion && j >= 0; j--) {
+      // move numbers to the right until we find where to insert
+      nums[j + 1] = nums[j];
+    }
+    // do the insertion. at this point j would equal -1 if say you need to sort the last number to start, so everything moves to right and you eould then see a duplicate, the number then moves below where the insertion takes place, with j replacing the duplicate.
+    nums[j + 1] = insertion;
+  }
+  return nums;
 }
 
 // unit tests
 // do not modify the below code
-test.skip("insertion sort", function () {
+test("insertion sortxxx", function () {
   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
   insertionSort(nums);
   expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
